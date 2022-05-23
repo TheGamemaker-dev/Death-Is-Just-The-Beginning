@@ -25,7 +25,6 @@ public class GhostController : MonoBehaviour
     public void Move(InputAction.CallbackContext context)
     {
         Vector2 velocity = context.ReadValue<Vector2>();
-        Debug.Log(velocity);
         direction = velocity.x;
 
         velocity = velocity.normalized;
