@@ -8,7 +8,6 @@ public class GhostController : MonoBehaviour
     Rigidbody2D ghostRigidbody;
     SpriteRenderer spriteRenderer;
     Vector2 velocity;
-    bool isMoving = false;
 
     // Start is called before the first frame update
     void Start()
