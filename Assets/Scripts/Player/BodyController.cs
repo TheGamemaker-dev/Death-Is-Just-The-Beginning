@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Animations;
 
 public class BodyController : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class BodyController : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Player player;
     PlayerInput playerInput;
+    Animator animator;
     float direction = 0;
     bool onGround;
 
@@ -18,6 +20,7 @@ public class BodyController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         player = GetComponentInParent<Player>();
         playerInput = GetComponent<PlayerInput>();
+        animator = GetComponent<Animator>();
     }
     private void Update()
     {
@@ -47,6 +50,14 @@ public class BodyController : MonoBehaviour
     public void Move(InputAction.CallbackContext context)
     {
         direction = context.ReadValue<float>();
+        if (context.phase == InputActionPhase.Started)
+        {
+            animator.SetTrigger("onMove");
+        }
+        else if (context.phase == InputActionPhase.Canceled)
+        {
+            animator.SetTrigger("onStopMove");
+        }
     }
 
     public void Jump(InputAction.CallbackContext context)
