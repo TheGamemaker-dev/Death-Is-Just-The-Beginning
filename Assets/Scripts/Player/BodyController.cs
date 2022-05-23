@@ -50,11 +50,11 @@ public class BodyController : MonoBehaviour
     public void Move(InputAction.CallbackContext context)
     {
         direction = context.ReadValue<float>();
-        if (context.phase == InputActionPhase.Started)
+        if (context.started)
         {
             animator.SetTrigger("onMove");
         }
-        else if (context.phase == InputActionPhase.Canceled)
+        else if (context.canceled)
         {
             animator.SetTrigger("onStopMove");
         }
@@ -62,7 +62,7 @@ public class BodyController : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (onGround && context.phase == InputActionPhase.Started && !player.inGhostMode)
+        if (onGround && context.started)
         {
             bodyRigidbody.velocity = new Vector2(bodyRigidbody.velocity.x, 16.5f);
         }

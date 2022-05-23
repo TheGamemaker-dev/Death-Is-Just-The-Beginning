@@ -7,7 +7,8 @@ public class GhostController : MonoBehaviour
 {
     Rigidbody2D ghostRigidbody;
     SpriteRenderer spriteRenderer;
-    float direction;
+    Vector2 velocity;
+    bool isMoving = false;
 
     // Start is called before the first frame update
     void Start()
@@ -19,16 +20,23 @@ public class GhostController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float direction = velocity.x;
+        velocity = velocity.normalized;
+
+        ghostRigidbody.velocity = velocity * 7;
+
         spriteRenderer.flipX = direction < 0 || (spriteRenderer.flipX && direction == 0);
     }
 
     public void Move(InputAction.CallbackContext context)
     {
-        Vector2 velocity = context.ReadValue<Vector2>();
-        direction = velocity.x;
-
-        velocity = velocity.normalized;
-
-        ghostRigidbody.velocity = velocity * 7;
+        if (context.started || context.performed)
+        {
+            velocity = context.ReadValue<Vector2>();
+        }
+        else if (context.canceled)
+        {
+            velocity = Vector2.zero;
+        }
     }
 }
