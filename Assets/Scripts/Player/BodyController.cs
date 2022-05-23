@@ -3,21 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class BodyController : MonoBehaviour
 {
-    Rigidbody2D playerRigidbody;
+    Rigidbody2D bodyRigidbody;
     SpriteRenderer spriteRenderer;
+    Player player;
+    PlayerInput playerInput;
     float direction = 0;
     bool onGround;
 
     private void Start()
     {
-        playerRigidbody = GetComponent<Rigidbody2D>();
+        bodyRigidbody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        player = GetComponentInParent<Player>();
+        playerInput = GetComponent<PlayerInput>();
     }
     private void Update()
     {
-        playerRigidbody.velocity = new Vector2(7 * direction, playerRigidbody.velocity.y);
+        if (!player.inGhostMode)
+        {
+            bodyRigidbody.velocity = new Vector2(7 * direction, bodyRigidbody.velocity.y);
+        }
         spriteRenderer.flipX = direction < 0 || (spriteRenderer.flipX && direction == 0);
     }
 
@@ -44,9 +51,9 @@ public class PlayerController : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (onGround && context.phase == InputActionPhase.Started)
+        if (onGround && context.phase == InputActionPhase.Started && !player.inGhostMode)
         {
-            playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, 16.5f);
+            bodyRigidbody.velocity = new Vector2(bodyRigidbody.velocity.x, 16.5f);
         }
     }
 
