@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     public bool inGhostMode = false;
-    [SerializeField] GameObject body, ghost;
+    public GameObject body, ghost;
 
     void Start()
     {
@@ -54,8 +54,8 @@ public class Player : MonoBehaviour
     void EnableGhost()
     {
         ghost.SetActive(true);
+        ghost.transform.position = body.transform.position;
         ghost.GetComponent<PlayerInput>().ActivateInput();
         ghost.GetComponent<PlayerInput>().SwitchCurrentControlScheme(new InputDevice[] { Keyboard.current, Mouse.current });
-        ghost.transform.position = body.transform.position;
     }
 }
