@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Animations;
 
-public class BodyController : MonoBehaviour
+public class Body : MonoBehaviour
 {
     Rigidbody2D bodyRigidbody;
     SpriteRenderer spriteRenderer;
