@@ -11,8 +11,10 @@ public class Body : MonoBehaviour
     Player player;
     PlayerInput playerInput;
     Animator animator;
+
     float direction = 0;
     bool onGround;
+    bool isJumping;
 
     private void Start()
     {
@@ -35,6 +37,9 @@ public class Body : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ground"))
         {
+            if(!onGround){
+                animator.SetBool("isJumping", false);
+            }
             onGround = true;
         }
     }
@@ -52,11 +57,11 @@ public class Body : MonoBehaviour
         direction = context.ReadValue<float>();
         if (context.started)
         {
-            animator.SetTrigger("onMove");
+            animator.SetBool("isMoving", true);
         }
         else if (context.canceled)
         {
-            animator.SetTrigger("onStopMove");
+            animator.SetBool("isMoving", false);
         }
     }
 
@@ -65,7 +70,9 @@ public class Body : MonoBehaviour
         if (onGround && context.started)
         {
             bodyRigidbody.velocity = new Vector2(bodyRigidbody.velocity.x, 16.5f);
-            animator.SetTrigger("onJump");
+            animator.SetBool("isJumping", true);
         }
     }
 }
+
+//beans
