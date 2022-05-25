@@ -374,7 +374,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 192
+        y: 160
         width: 32
         height: 32
       alignment: 0
@@ -395,7 +395,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 192
+        y: 160
         width: 32
         height: 32
       alignment: 0
@@ -416,7 +416,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 192
+        y: 160
         width: 32
         height: 32
       alignment: 0
@@ -437,7 +437,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 96
-        y: 192
+        y: 160
         width: 32
         height: 32
       alignment: 0
@@ -457,7 +457,7 @@ TextureImporter:
       name: TILEMAPDRAFT1_12
       rect:
         serializedVersion: 2
-        x: 0
+        x: 128
         y: 160
         width: 32
         height: 32
@@ -478,7 +478,7 @@ TextureImporter:
       name: TILEMAPDRAFT1_13
       rect:
         serializedVersion: 2
-        x: 32
+        x: 160
         y: 160
         width: 32
         height: 32
@@ -499,7 +499,7 @@ TextureImporter:
       name: TILEMAPDRAFT1_14
       rect:
         serializedVersion: 2
-        x: 64
+        x: 192
         y: 160
         width: 32
         height: 32
@@ -520,7 +520,7 @@ TextureImporter:
       name: TILEMAPDRAFT1_15
       rect:
         serializedVersion: 2
-        x: 96
+        x: 224
         y: 160
         width: 32
         height: 32
@@ -533,90 +533,6 @@ TextureImporter:
       bones: []
       spriteID: 5f5e6d9543d16d7f0800000000000000
       internalID: -588250590642510347
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TILEMAPDRAFT1_16
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 160
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8111ce015f31367a0800000000000000
-      internalID: -6385237903409409768
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TILEMAPDRAFT1_17
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 160
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5b12cf62612f2f9f0800000000000000
-      internalID: -436020036944256587
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TILEMAPDRAFT1_18
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 160
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d18381d61a32e34b0800000000000000
-      internalID: -5458886522099451875
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TILEMAPDRAFT1_19
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 160
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 06dbdab2745236290800000000000000
-      internalID: -7898428333872005792
       vertices: []
       indices: 
       edges: []

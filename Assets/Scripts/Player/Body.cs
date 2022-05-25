@@ -65,7 +65,7 @@ public class Body : MonoBehaviour
         if (onGround && context.started)
         {
             bodyRigidbody.velocity = new Vector2(bodyRigidbody.velocity.x, 16.5f);
+            animator.SetTrigger("onJump");
         }
     }
-
 }
