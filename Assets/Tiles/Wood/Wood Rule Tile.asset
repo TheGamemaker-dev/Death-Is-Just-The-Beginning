@@ -82,7 +82,7 @@ MonoBehaviour:
     m_NeighborPositions:
     - {x: 0, y: 1, z: 0}
     - {x: 0, y: -1, z: 0}
-    m_RuleTransform: 0
+    m_RuleTransform: 1
   - m_Id: 20
     m_Sprites:
     - {fileID: -927099196495086005, guid: 85ca80ac9ef420b48abc56c3efc5363a, type: 3}
