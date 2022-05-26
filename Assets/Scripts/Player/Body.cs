@@ -1,36 +1,36 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.InputSystem;
-using UnityEngine.Animations;
 
 public class Body : MonoBehaviour
 {
     Rigidbody2D bodyRigidbody;
     SpriteRenderer spriteRenderer;
     Player player;
-    PlayerInput playerInput;
     Animator animator;
+    GameObject flashlight;
 
     float direction = 0;
     bool onGround;
-    bool isJumping;
+    float flashlightRotation = -90;
 
     private void Start()
     {
         bodyRigidbody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         player = GetComponentInParent<Player>();
-        playerInput = GetComponent<PlayerInput>();
         animator = GetComponent<Animator>();
+        flashlight = GetComponentInChildren<Light2D>().gameObject;
     }
     private void Update()
     {
         if (!player.inGhostMode)
         {
-            bodyRigidbody.velocity = new Vector2(7 * direction, bodyRigidbody.velocity.y);
+			bodyRigidbody.velocity = new Vector2(7 * direction, bodyRigidbody.velocity.y);
         }
         spriteRenderer.flipX = direction < 0 || (spriteRenderer.flipX && direction == 0);
+        UpdateFlashlight();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -72,6 +72,23 @@ public class Body : MonoBehaviour
             bodyRigidbody.velocity = new Vector2(bodyRigidbody.velocity.x, 16.5f);
             animator.SetBool("isJumping", true);
         }
+    }
+
+    public void FlashlightChange(InputAction.CallbackContext context)
+	{
+        float input = context.ReadValue<float>();
+        float angle = input * 35;
+        flashlightRotation = angle-90;
+	}
+
+    void UpdateFlashlight()
+	{
+        if ((spriteRenderer.flipX && flashlightRotation < 0) || (!spriteRenderer.flipX && flashlightRotation > 0))
+        {
+            flashlightRotation = -flashlightRotation;
+        }
+
+        flashlight.transform.eulerAngles = new Vector3(0, 0, flashlightRotation);
     }
 }
 

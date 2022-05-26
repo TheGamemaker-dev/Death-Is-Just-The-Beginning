@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class Player : MonoBehaviour
 {
@@ -36,6 +37,7 @@ public class Player : MonoBehaviour
         body.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         body.GetComponent<PlayerInput>().DeactivateInput();
         body.GetComponent<SpriteRenderer>().color = new Color(.5f, .5f, .5f, 1f);
+        body.GetComponentInChildren<Light2D>().intensity=0;
     }
 
     void DisableGhost()
@@ -49,6 +51,8 @@ public class Player : MonoBehaviour
         body.GetComponent<PlayerInput>().ActivateInput();
         body.GetComponent<PlayerInput>().SwitchCurrentControlScheme(new InputDevice[] { Keyboard.current, Mouse.current });
         body.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
+    
+        body.GetComponentInChildren<Light2D>().intensity = 1;
     }
 
     void EnableGhost()

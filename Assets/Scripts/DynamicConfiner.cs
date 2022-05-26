@@ -5,12 +5,12 @@ using UnityEngine.Tilemaps;
 using UnityEditor;
 using System.Linq;
 
-[ExecuteInEditMode]
+[ExecuteAlways]
 [RequireComponent(typeof(PolygonCollider2D))]
 [RequireComponent(typeof(Grid))]
 public class DynamicConfiner : MonoBehaviour
 {
-	PolygonCollider2D collider;
+	PolygonCollider2D polygonCollider;
 	List<Tilemap> tilemaps;
 
 	private void Awake()
@@ -18,9 +18,7 @@ public class DynamicConfiner : MonoBehaviour
 #if UNITY_EDITOR
 		if (EditorApplication.isPlaying) { return; }
 
-		Debug.Log("Editor is Awake!");
-
-		collider = GetComponent<PolygonCollider2D>();
+		polygonCollider = GetComponent<PolygonCollider2D>();
 		tilemaps = GetComponentsInChildren<Tilemap>().ToList();
 		Tilemap.tilemapTileChanged += OnTilemapChanged;
 #endif
@@ -72,6 +70,6 @@ public class DynamicConfiner : MonoBehaviour
 		newPoints[2] = new Vector2(newMax.x, newMax.y);
 		newPoints[3] = new Vector2(newMin.x, newMax.y);
 
-		collider.SetPath(0, newPoints);
+		polygonCollider.SetPath(0, newPoints);
 	}
 }
