@@ -9,6 +9,7 @@ public class StartMenuManager : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene("Level 1");
+        GameManager.singleton.currentLevel = 1;
     }
 
     public void QuitGame()

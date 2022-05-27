@@ -1,18 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public readonly int levelCount = 2;
+    public static GameManager singleton;
+
+    public int currentLevel;
+
+    void Awake()
     {
-        
+        if (singleton == null)
+        {
+            singleton = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (singleton != this)
+        {
+            Destroy(gameObject);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void NextLevel()
     {
-        
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        if (currentScene.buildIndex < levelCount)
+        {
+            SceneManager.LoadScene(currentScene.buildIndex + 1);
+        }
+        else
+        {
+            SceneManager.LoadScene("Finish");
+        }
     }
 }

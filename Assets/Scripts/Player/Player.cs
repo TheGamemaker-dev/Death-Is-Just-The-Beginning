@@ -7,7 +7,8 @@ using UnityEngine.Experimental.Rendering.Universal;
 public class Player : MonoBehaviour
 {
     public bool inGhostMode = false;
-    public GameObject body, ghost;
+    public GameObject body,
+        ghost;
 
     void Start()
     {
@@ -16,7 +17,10 @@ public class Player : MonoBehaviour
 
     public void SwitchMode(InputAction.CallbackContext context)
     {
-        if (context.phase != InputActionPhase.Started) { return; }
+        if (context.phase != InputActionPhase.Started)
+        {
+            return;
+        }
 
         inGhostMode = !inGhostMode;
 
@@ -32,12 +36,18 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void OnFinishLevel()
+    {
+        body.SetActive(false);
+        ghost.SetActive(false);
+    }
+
     void DisableBody()
     {
         body.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         body.GetComponent<PlayerInput>().DeactivateInput();
         body.GetComponent<SpriteRenderer>().color = new Color(.5f, .5f, .5f, 1f);
-        body.GetComponentInChildren<Light2D>().intensity=0;
+        body.GetComponentInChildren<Light2D>().intensity = 0;
     }
 
     void DisableGhost()
@@ -49,9 +59,10 @@ public class Player : MonoBehaviour
     void EnableBody()
     {
         body.GetComponent<PlayerInput>().ActivateInput();
-        body.GetComponent<PlayerInput>().SwitchCurrentControlScheme(new InputDevice[] { Keyboard.current, Mouse.current });
+        body.GetComponent<PlayerInput>()
+            .SwitchCurrentControlScheme(new InputDevice[] { Keyboard.current, Mouse.current });
         body.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
-    
+
         body.GetComponentInChildren<Light2D>().intensity = 1;
     }
 
@@ -60,6 +71,8 @@ public class Player : MonoBehaviour
         ghost.SetActive(true);
         ghost.transform.position = body.transform.position;
         ghost.GetComponent<PlayerInput>().ActivateInput();
-        ghost.GetComponent<PlayerInput>().SwitchCurrentControlScheme(new InputDevice[] { Keyboard.current, Mouse.current });
+        ghost
+            .GetComponent<PlayerInput>()
+            .SwitchCurrentControlScheme(new InputDevice[] { Keyboard.current, Mouse.current });
     }
 }

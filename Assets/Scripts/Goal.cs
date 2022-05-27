@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class Goal : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    Animator anim;
+
+    private void Start()
     {
-        
+        anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        
+        if (other.gameObject.CompareTag("Player"))
+        {
+            anim.SetTrigger("onClose");
+            other.gameObject.GetComponentInParent<Player>().OnFinishLevel();
+        }
+    }
+
+    public void NextLevel()
+    {
+        GameManager.singleton.NextLevel();
     }
 }
