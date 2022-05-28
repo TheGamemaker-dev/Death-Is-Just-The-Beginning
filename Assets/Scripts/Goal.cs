@@ -5,10 +5,17 @@ using UnityEngine;
 public class Goal : MonoBehaviour
 {
     Animator anim;
+    BoxCollider2D boxCollider;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
+        boxCollider = GetComponent<BoxCollider2D>();
+    }
+
+    private void Update()
+    {
+        boxCollider.enabled = (KeyManager.keyTotal == 0);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
