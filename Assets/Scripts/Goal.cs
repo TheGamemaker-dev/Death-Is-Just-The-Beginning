@@ -6,16 +6,26 @@ public class Goal : MonoBehaviour
 {
     Animator anim;
     BoxCollider2D boxCollider;
+    bool isOpen;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
+        boxCollider.enabled = false;
     }
 
     private void Update()
     {
-        boxCollider.enabled = (KeyManager.keyTotal == 0);
+        if (!isOpen)
+        {
+            isOpen = KeyManager.keyTotal == 0;
+            if (isOpen)
+            {
+                boxCollider.enabled = true;
+                anim.SetTrigger("onOpen");
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
