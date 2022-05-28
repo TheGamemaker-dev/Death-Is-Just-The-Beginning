@@ -5,8 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public readonly int levelCount = 2;
+    public static readonly string LEVEL_KEY = "CURRENT_LEVEL";
     public static GameManager singleton;
+    public readonly int levelCount = 2;
 
     public int currentLevel;
 
@@ -30,10 +31,22 @@ public class GameManager : MonoBehaviour
         if (currentScene.buildIndex < levelCount)
         {
             SceneManager.LoadScene(currentScene.buildIndex + 1);
+            currentLevel++;
         }
         else
         {
             SceneManager.LoadScene("Finish");
         }
+        SaveProgress();
+    }
+
+    public void LoadLevel(int level)
+    {
+        SceneManager.LoadScene(level);
+    }
+
+    public void SaveProgress()
+    {
+        PlayerPrefs.SetInt(LEVEL_KEY, currentLevel);
     }
 }
