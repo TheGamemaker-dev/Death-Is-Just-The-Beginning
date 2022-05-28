@@ -7,6 +7,7 @@ public class KeyManager : MonoBehaviour
 {
     public static KeyManager singleton;
     public static int keyTotal;
+
     private void Start()
     {
         if (singleton == null)
@@ -32,7 +33,6 @@ public class KeyManager : MonoBehaviour
 
     private void OnSceneChanged(Scene scene, LoadSceneMode mode)
     {
-        keyTotal = FindObjectsOfType<KeyManager>().Length;
         if (!scene.name.Contains("Level"))
         {
             Destroy(gameObject);
