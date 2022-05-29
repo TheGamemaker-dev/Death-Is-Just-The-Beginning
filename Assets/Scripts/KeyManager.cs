@@ -33,6 +33,7 @@ public class KeyManager : MonoBehaviour
 
     private void OnSceneChanged(Scene scene, LoadSceneMode mode)
     {
+        keyTotal = 0;
         if (!scene.name.Contains("Level"))
         {
             Destroy(gameObject);

@@ -6,13 +6,28 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 public class Player : MonoBehaviour
 {
+    public readonly float restartTime = 2f;
+
     public bool inGhostMode = false;
+    public float restartHoldTime = 0;
+    public bool holdingRestart = false;
+
     public GameObject body,
         ghost;
 
     void Start()
     {
         DisableGhost();
+    }
+
+    private void Update()
+    {
+        restartHoldTime = holdingRestart ? restartHoldTime + Time.deltaTime : 0;
+
+        if (restartHoldTime >= restartTime)
+        {
+            GameManager.singleton.LoadLevel(GameManager.singleton.currentLevel);
+        }
     }
 
     public void SwitchMode(InputAction.CallbackContext context)
@@ -33,6 +48,18 @@ public class Player : MonoBehaviour
         {
             DisableGhost();
             EnableBody();
+        }
+    }
+
+    public void Restart(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            holdingRestart = true;
+        }
+        else if (context.canceled)
+        {
+            holdingRestart = false;
         }
     }
 
