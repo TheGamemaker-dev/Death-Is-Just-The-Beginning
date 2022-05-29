@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static readonly string LEVEL_KEY = "CURRENT_LEVEL";
     public static GameManager singleton;
-    public readonly int levelCount = 3;
+    public readonly int levelCount = 4;
 
     public int currentLevel;
 
