@@ -15,9 +15,9 @@ public class DynamicConfiner : MonoBehaviour
     EdgeCollider2D edgeCollider2D;
     List<Tilemap> tilemaps;
 
+#if UNITY_EDITOR
     private void Awake()
     {
-#if UNITY_EDITOR
         if (EditorApplication.isPlaying)
         {
             return;
@@ -27,7 +27,6 @@ public class DynamicConfiner : MonoBehaviour
         tilemaps = GetComponentsInChildren<Tilemap>().ToList();
         edgeCollider2D = GetComponent<EdgeCollider2D>();
         Tilemap.tilemapTileChanged += OnTilemapChanged;
-#endif
     }
 
     private void Update()
@@ -88,4 +87,5 @@ public class DynamicConfiner : MonoBehaviour
 
         edgeCollider2D.SetPoints(newerPoints);
     }
+#endif
 }
